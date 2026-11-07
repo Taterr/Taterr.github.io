@@ -270,19 +270,16 @@ export default function App() {
           <div className="container">
             <SectionHeading
               number="02"
-              label="PROJECTS & EXPERIMENTS"
+              label="PROJECTS & HACKATHONS"
               title={
                 <span id="projects-title">
-                  Serious code.
-                  <br />
-                  <em>Playful possibilities.</em>
+                  Projects:
                 </span>
               }
             >
               <p className="section-aside">
-                Custom engines, virtual worlds, useful apps.
-                <br />
-                Press play and take a look around.
+                C / C++ / Python / Lua / React / Javascript
+                <br /> 
               </p>
             </SectionHeading>
             <div className="project-toolbar">
@@ -291,7 +288,7 @@ export default function App() {
                 role="group"
                 aria-label="Filter projects"
               >
-                {["All work", "Games & engines", "Applications"].map((f) => (
+                {["All work", "Games & engines", "Hackathons"].map((f) => (
                   <button
                     key={f}
                     aria-pressed={filter === f}
@@ -346,12 +343,12 @@ export default function App() {
         >
           <SectionHeading
             number="03"
-            label="EDUCATION"
-            title={<span id="education-title">Always a student.</span>}
+            label="ALMA MATER"
+            title={<span id="education-title">Education</span>}
           >
             <p className="section-aside">
-              A foundation in engineering.
-              <br />A curiosity that keeps going.
+              Computer Science.
+              <br />Biomedical Engineering.
             </p>
           </SectionHeading>
           <div className="education-grid">

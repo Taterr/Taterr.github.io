@@ -11,52 +11,51 @@ export const experience = [
     role: "Software Engineer",
     date: "Sep 2026 — Present",
     current: true,
-    description: "Building software and exploring what AI makes possible.",
+    description: "Cryptography",
     details: [
-      "Collaborated on an AI building game for an internal Townhall challenge, placing 2nd among 21 teams.",
-    ],
-    tags: ["Software engineering", "AI"],
+      "Frontend developer for new AWS Licensing web portal initiative",
+   ],
+    tags: ["C++", "React"],
   },
   {
     company: "DBS Bank",
     role: "Management Associate, Technology",
     date: "Jul 2025 — Sep 2026",
     description:
-      "Turning infrastructure operations into reliable, automated workflows.",
+      "Infrastructure, Private Cloud",
     details: [
       "Selected as 1 of 19 from 40,000+ applicants for the Technology Management Associate Programme.",
-      "Led backend development of an F5 load balancing automation platform, improving operational efficiency by 30%.",
-      "Built a fullstack platform to track and automate OS upgrades across 20+ VPN devices.",
+      "Led backend for ground up development of F5 load balancing automation platform, improving operational efficiency by 30%.",
+      "Owned end-to-end module to automate vulnerability upgrade across 20+ VPN devices.",
     ],
-    tags: ["Python", "Django", "React", "REST"],
+    tags: ["Python", "Django", "React"],
   },
   {
     company: "DBS Bank",
     role: "Site Reliability Engineer",
     date: "May 2024 — Apr 2025",
     description:
-      "Making enterprise recovery faster and systems more observable.",
+      "Global Financial Markets",
     details: [
-      "Developed a workflow script executor in MAGIC to streamline Murex service recovery, reducing repetitive script execution time by over 50%.",
-      "Implemented log monitoring with the ELK stack to support system stability and resilience.",
+      "Owned end-to-end ground up script executor module, to streamline Murex service recovery, reducing repetitive script execution time by over 50%."
     ],
-    tags: ["PHP", "Laravel", "ELK"],
+    tags: ["PHP", "Laravel", "Elastic"],
   },
   {
     company: "OCBC Bank",
-    role: "Loan Officer · Contract",
+    role: "Loan Officer · Temporary",
     date: "Jun 2021 — Sep 2021",
     description:
-      "Helped a small team process over 1,000 tuition fee loan applications in three months.",
-    details: [],
-    tags: ["Operations", "Teamwork"],
+      "Post Approval",
+    details: ["Process over 1,000 tuition fee loan applications in three months, through crunch."],
+    tags: ["Operations"],
   },
 ];
 
 export const projects = [
   {
     title: "VII Engine",
-    subtitle: "A world, built from the ground up.",
+    subtitle: "Programmer · Graphics Champion",
     type: "Games & engines",
     year: "2023–24",
     role: "Programmer · Graphics Champion",
@@ -105,7 +104,7 @@ export const projects = [
   {
     title: "OCUTELUS",
     subtitle: "A different kind of school visit.",
-    type: "Applications",
+    type: "Games & engines",
     year: "2023",
     role: "Programmer",
     description:
@@ -130,7 +129,7 @@ export const projects = [
   {
     title: "FoodKaki",
     subtitle: "Good food. Smarter spending.",
-    type: "Applications",
+    type: "Hackathons",
     year: "2024",
     role: "HackSingapore · Ranked 31 / 200",
     description:
@@ -142,7 +141,7 @@ export const projects = [
   {
     title: "SITZEN",
     subtitle: "A more connected campus.",
-    type: "Applications",
+    type: "Hackathons",
     year: "2023",
     role: "CoDe Hackathon · Ranked 4 / 6",
     description:
