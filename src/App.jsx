@@ -276,8 +276,8 @@ export default function App() {
             title={<span id="experience-title">Built in the real world.</span>}
           >
             <p className="section-aside">
-              Reliable systems. Thoughtful tools.
-              <br />A little better, every iteration.
+              Step by Step,
+              <br />A little better after every iteration
             </p>
           </SectionHeading>
           <div className="company-logos" aria-label="Companies I’ve worked at">
