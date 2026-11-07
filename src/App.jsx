@@ -65,9 +65,10 @@ function VideoWindow({ project }) {
     </div>
   );
 }
-function Tags({ items }) {
+function Tags({ items, ranking }) {
   return (
     <ul className="tags">
+      {ranking && <li className="ranking-tag">{ranking}</li>}
       {items.map((item) => (
         <li key={item}>{item}</li>
       ))}
@@ -271,15 +272,11 @@ export default function App() {
             <SectionHeading
               number="02"
               label="PROJECTS & HACKATHONS"
-              title={
-                <span id="projects-title">
-                  Projects:
-                </span>
-              }
+              title={<span id="projects-title">Projects:</span>}
             >
               <p className="section-aside">
                 C / C++ / Python / Lua / React / Javascript
-                <br /> 
+                <br />
               </p>
             </SectionHeading>
             <div className="project-toolbar">
@@ -317,20 +314,20 @@ export default function App() {
                           <i />
                         </div>
                       </div>
-                      <span>CAMPUS, CONNECTED.</span>
+                      <span>FOR SITZENS, BY SITZENS.</span>
                     </div>
                   )}
                   <div className="project-meta">
-                    <span>{project.role}</span>
-                    <span>{project.year}</span>
+                    <p className="project-description">{project.description}</p>
+                    <span className="project-year">{project.year}</span>
                   </div>
                   <h3>
                     {project.title}
                     <span aria-hidden="true">↗</span>
                   </h3>
+                  <p className="project-role">{project.role}</p>
                   <p className="project-subtitle">{project.subtitle}</p>
-                  <p className="project-description">{project.description}</p>
-                  <Tags items={project.tags} />
+                  <Tags items={project.tags} ranking={project.ranking} />
                 </article>
               ))}
             </div>
@@ -348,7 +345,8 @@ export default function App() {
           >
             <p className="section-aside">
               Computer Science.
-              <br />Biomedical Engineering.
+              <br />
+              Biomedical Engineering.
             </p>
           </SectionHeading>
           <div className="education-grid">

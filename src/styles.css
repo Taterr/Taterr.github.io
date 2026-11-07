@@ -455,6 +455,11 @@ h2 {
   border-radius: 3px;
   color: #b7c5d6;
 }
+.tags .ranking-tag {
+  color: #cabb7d;
+  background: #fdcc0d0d;
+  border-color: #fdcc0d26;
+}
 .projects-section {
   background: #0a142480;
   border-block: 1px solid var(--line);
@@ -525,15 +530,26 @@ h2 {
   color: var(--olive);
 }
 .project-subtitle {
-  font-size: 13px;
-  font-weight: 500;
+  font-size: 12px;
+  color: var(--muted);
   margin-top: 7px;
 }
+.project-role {
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 8px;
+  line-height: 1.7;
+}
+.project-year {
+  flex-shrink: 0;
+  white-space: nowrap;
+  font-size: 10px;
+  padding-top: 2px;
+}
 .project-description {
-  font-size: 12px;
+  font-size: 11px;
   line-height: 1.85;
   color: var(--muted);
-  margin-top: 9px;
   max-width: 490px;
 }
 .orange {

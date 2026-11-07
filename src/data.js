@@ -12,17 +12,14 @@ export const experience = [
     date: "Sep 2026 — Present",
     current: true,
     description: "Cryptography",
-    details: [
-      "Frontend developer for new AWS Licensing web portal initiative",
-   ],
+    details: ["Frontend developer for new AWS Licensing web portal initiative"],
     tags: ["C++", "React"],
   },
   {
     company: "DBS Bank",
     role: "Management Associate, Technology",
     date: "Jul 2025 — Sep 2026",
-    description:
-      "Infrastructure, Private Cloud",
+    description: "Infrastructure, Private Cloud",
     details: [
       "Selected as 1 of 19 from 40,000+ applicants for the Technology Management Associate Programme.",
       "Led backend for ground up development of F5 load balancing automation platform, improving operational efficiency by 30%.",
@@ -34,10 +31,9 @@ export const experience = [
     company: "DBS Bank",
     role: "Site Reliability Engineer",
     date: "May 2024 — Apr 2025",
-    description:
-      "Global Financial Markets",
+    description: "Global Financial Markets",
     details: [
-      "Owned end-to-end ground up script executor module, to streamline Murex service recovery, reducing repetitive script execution time by over 50%."
+      "Owned end-to-end ground up script executor module, to streamline Murex service recovery, reducing repetitive script execution time by over 50%.",
     ],
     tags: ["PHP", "Laravel", "Elastic"],
   },
@@ -45,9 +41,10 @@ export const experience = [
     company: "OCBC Bank",
     role: "Loan Officer · Temporary",
     date: "Jun 2021 — Sep 2021",
-    description:
-      "Post Approval",
-    details: ["Process over 1,000 tuition fee loan applications in three months, through crunch."],
+    description: "Post Approval",
+    details: [
+      "Process over 1,000 tuition fee loan applications in three months, through crunch.",
+    ],
     tags: ["Operations"],
   },
 ];
@@ -131,7 +128,8 @@ export const projects = [
     subtitle: "Good food. Smarter spending.",
     type: "Hackathons",
     year: "2024",
-    role: "HackSingapore · Ranked 31 / 200",
+    role: "HackSingapore",
+    ranking: "Ranked 31 / 200",
     description:
       "A meal-budgeting app comparing dining out with cooking at home. Combines restaurant options, Gemini-generated ingredient lists, and grocery prices.",
     tags: ["Google Gemini", "Hackathon", "Budgeting"],
@@ -143,7 +141,8 @@ export const projects = [
     subtitle: "A more connected campus.",
     type: "Hackathons",
     year: "2023",
-    role: "CoDe Hackathon · Ranked 4 / 6",
+    role: "CoDe Hackathon",
+    ranking: "Ranked 4 / 6",
     description:
       "A campus mobile app bringing e-module tracking, grading, feedback, room bookings, messaging, and discussion forums into one place.",
     tags: ["Mobile app", "Campus", "Hackathon"],
