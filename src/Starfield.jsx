@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { createSpaceEffects } from "./spaceEffects.js";
 
 export default function Starfield() {
   const canvasRef = useRef(null);
@@ -17,7 +18,9 @@ export default function Starfield() {
     let width = 0;
     let height = 0;
     let frame = 0;
-    let lastTime = 0;
+    let lastTime = null;
+    let elapsed = 0;
+    const scenery = createSpaceEffects();
     const depth = 1500;
     const makeStar = (z = Math.random() * depth) => {
       const tint = Math.random();
@@ -98,11 +101,17 @@ export default function Starfield() {
       context.restore();
     }
 
-    function draw(time = 0) {
+    function draw(time = null) {
       const moving = !motion.matches && !document.hidden;
-      const delta = lastTime ? Math.min((time - lastTime) / 1000, 0.05) : 0;
+      const delta =
+        lastTime !== null && time !== null
+          ? Math.min((time - lastTime) / 1000, 0.05)
+          : 0;
       lastTime = time;
+      if (moving) elapsed += delta;
       context.clearRect(0, 0, width, height);
+      scenery.drawNebulae(context, width, height, elapsed);
+      scenery.drawDistantStars(context, width, height, elapsed);
       const focal = Math.max(width, height) * 0.68;
       const centerX = width * 0.56;
       const centerY = height * 0.42;
@@ -150,7 +159,7 @@ export default function Starfield() {
 
     function restart() {
       cancelAnimationFrame(frame);
-      lastTime = 0;
+      lastTime = null;
       draw();
     }
     function resize() {

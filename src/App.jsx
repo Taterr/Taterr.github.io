@@ -229,7 +229,7 @@ export default function App() {
             Richmond Choo<span className="intro-period">.</span>
           </h1>
           <p className="intro-role">
-            Software engineer <span aria-hidden="true">·</span> Singapore
+            Software Engineer <span aria-hidden="true">·</span> Singapore
           </p>
           <ScrollCue />
         </section>
@@ -244,8 +244,8 @@ export default function App() {
             title={<span id="experience-title">Built in the real world.</span>}
           >
             <p className="section-aside">
-              Step by Step,
-              <br />A little better after every iteration
+              Banking & Finance,
+              <br />Defence.
             </p>
           </SectionHeading>
           <div className="company-logos" aria-label="Companies I’ve worked at">

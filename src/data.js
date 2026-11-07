@@ -39,7 +39,7 @@ export const experience = [
   },
   {
     company: "OCBC Bank",
-    role: "Loan Officer · Temporary",
+    role: "Loan Officer",
     date: "Jun 2021 — Sep 2021",
     description: "Post Approval",
     details: [
