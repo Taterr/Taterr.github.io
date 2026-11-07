@@ -9,12 +9,10 @@ const companies = [
 ];
 
 const Arrow = () => <span aria-hidden="true">↗</span>;
-function VideoWindow({ project, featured = false }) {
+function VideoWindow({ project }) {
   const [playing, setPlaying] = useState(false);
   return (
-    <div
-      className={`video-window ${project.color} ${featured ? "featured-window" : ""}`}
-    >
+    <div className={`video-window ${project.color}`}>
       <div className="window-bar">
         <span className="window-dots" aria-hidden="true">
           <i />
@@ -41,25 +39,21 @@ function VideoWindow({ project, featured = false }) {
             <img
               src={`https://i.ytimg.com/vi/${project.video}/hqdefault.jpg`}
               alt=""
-              loading={featured ? "eager" : "lazy"}
+              loading="lazy"
             />
             <span className="video-shade" />
             <span className="play-button" aria-hidden="true">
               ▶
             </span>
             <span className="cover-label">
-              {featured ? "A little of what I build" : "Watch project film"}
+              Watch project film
               <span>PLAY ↗</span>
             </span>
           </button>
         )}
       </div>
       <div className="window-bottom">
-        <span>
-          {featured
-            ? "CUSTOM ENGINE. REAL GAMEPLAY."
-            : project.tags.slice(0, 2).join(" / ")}
-        </span>
+        <span>{project.tags.slice(0, 2).join(" / ")}</span>
         <a
           href={`https://www.youtube.com/watch?v=${project.video}${project.start ? `&t=${project.start}s` : ""}`}
           target="_blank"
@@ -206,63 +200,23 @@ export default function App() {
       <main id="main">
         <section
           id="introduction"
-          className="hero container"
+          className="profile-intro container"
           aria-labelledby="intro-title"
         >
-          <div className="hero-top">
-            <p className="eyebrow">
-              <span className="status-dot" /> SOFTWARE ENGINEER · SINGAPORE
-            </p>
-            <span className="edition">A selection of work / 2022–2026</span>
-          </div>
-          <div className="hero-grid">
-            <div className="hero-copy">
-              <h1 id="intro-title">
-                Engineering
-                <br />
-                with a little
-                <br />
-                <em>imagination.</em>
-                <span className="heading-star" aria-hidden="true">
-                  ✳
-                </span>
-              </h1>
-              <p className="hero-intro">
-                Hi, I’m Richmond Choo<span className="orange-text">.</span>
-              </p>
-              <p className="intro">
-                From reliable banking platforms to worlds built in C++. I turn
-                complex problems into software that works — and experiences
-                worth exploring.
-              </p>
-              <div className="hero-actions">
-                <a className="button" href="#projects">
-                  Explore my work <span aria-hidden="true">↘</span>
-                </a>
-                <a
-                  className="text-link"
-                  href={profile.linkedin}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  LinkedIn <Arrow />
-                </a>
-              </div>
-            </div>
-            <div className="hero-feature">
-              <div className="feature-note">
-                the creative side of engineering{" "}
-                <span aria-hidden="true">↘</span>
-              </div>
-              <VideoWindow project={projects[1]} featured />
-              <div className="feature-caption">
-                <span>01 — TROUBLESHOOTER</span>
-                <span>Built on our own 3D engine</span>
-              </div>
-              <div className="floating-note">
-                <span aria-hidden="true">⌘</span> Code. Create. Iterate.
-              </div>
-            </div>
+          <p className="intro-greeting">Hello, I’m</p>
+          <h1 id="intro-title">
+            Richmond Choo<span className="intro-period">.</span>
+          </h1>
+          <p className="intro-role">
+            Software engineer <span aria-hidden="true">·</span> Singapore
+          </p>
+          <div className="intro-links">
+            <a href={profile.github} target="_blank" rel="noreferrer">
+              GitHub <Arrow />
+            </a>
+            <a href={profile.linkedin} target="_blank" rel="noreferrer">
+              LinkedIn <Arrow />
+            </a>
           </div>
         </section>
         <section
