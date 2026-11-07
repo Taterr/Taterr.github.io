@@ -1,65 +1,460 @@
-import { profile, projects } from './data.js';
+import { useEffect, useRef, useState } from "react";
+import Starfield from "./Starfield.jsx";
+import { profile, experience, projects } from "./data.js";
+
+const companies = [
+  { name: "ST Engineering", logo: "/logos/st-engineering.png" },
+  { name: "DBS Bank", logo: "/logos/dbs.svg" },
+  { name: "OCBC Bank", logo: "/logos/ocbc.png" },
+];
+
+const Arrow = () => <span aria-hidden="true">↗</span>;
+function VideoWindow({ project, featured = false }) {
+  const [playing, setPlaying] = useState(false);
+  return (
+    <div
+      className={`video-window ${project.color} ${featured ? "featured-window" : ""}`}
+    >
+      <div className="window-bar">
+        <span className="window-dots" aria-hidden="true">
+          <i />
+          <i />
+          <i />
+        </span>
+        <span>{project.title.toLowerCase().replaceAll(" ", "-")}.play</span>
+        <span aria-hidden="true">↗</span>
+      </div>
+      <div className="video-stage">
+        {playing ? (
+          <iframe
+            title={`${project.title} video`}
+            src={`https://www.youtube-nocookie.com/embed/${project.video}?autoplay=1&start=${project.start || 0}`}
+            allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+            referrerPolicy="strict-origin-when-cross-origin"
+          />
+        ) : (
+          <button
+            className="video-cover"
+            onClick={() => setPlaying(true)}
+            aria-label={`Play ${project.title} video`}
+          >
+            <img
+              src={`https://i.ytimg.com/vi/${project.video}/hqdefault.jpg`}
+              alt=""
+              loading={featured ? "eager" : "lazy"}
+            />
+            <span className="video-shade" />
+            <span className="play-button" aria-hidden="true">
+              ▶
+            </span>
+            <span className="cover-label">
+              {featured ? "A little of what I build" : "Watch project film"}
+              <span>PLAY ↗</span>
+            </span>
+          </button>
+        )}
+      </div>
+      <div className="window-bottom">
+        <span>
+          {featured
+            ? "CUSTOM ENGINE. REAL GAMEPLAY."
+            : project.tags.slice(0, 2).join(" / ")}
+        </span>
+        <a
+          href={`https://www.youtube.com/watch?v=${project.video}${project.start ? `&t=${project.start}s` : ""}`}
+          target="_blank"
+          rel="noreferrer"
+        >
+          YouTube <Arrow />
+        </a>
+      </div>
+    </div>
+  );
+}
+function Tags({ items }) {
+  return (
+    <ul className="tags">
+      {items.map((item) => (
+        <li key={item}>{item}</li>
+      ))}
+    </ul>
+  );
+}
+function SectionHeading({ number, label, title, children }) {
+  return (
+    <div className="section-heading">
+      <div>
+        <p className="eyebrow">
+          <span>{number} /</span> {label}
+        </p>
+        <h2>{title}</h2>
+      </div>
+      {children}
+    </div>
+  );
+}
+function CompanyModal({ company, onClose }) {
+  const dialogRef = useRef(null);
+
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    const previousOverflow = document.body.style.overflow;
+    if (!dialog.open) dialog.showModal();
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, []);
+
+  function closeOnBackdrop(event) {
+    if (event.target !== event.currentTarget) return;
+    const bounds = event.currentTarget.getBoundingClientRect();
+    if (
+      event.clientX < bounds.left ||
+      event.clientX > bounds.right ||
+      event.clientY < bounds.top ||
+      event.clientY > bounds.bottom
+    ) {
+      event.currentTarget.close();
+    }
+  }
+
+  return (
+    <dialog
+      ref={dialogRef}
+      className="company-modal"
+      aria-labelledby="company-modal-title"
+      onClose={onClose}
+      onClick={closeOnBackdrop}
+    >
+      <div className="modal-header">
+        <div>
+          <p className="eyebrow">WORKING EXPERIENCE</p>
+          <h2 id="company-modal-title">{company.name}</h2>
+        </div>
+        <button
+          type="button"
+          className="modal-close"
+          aria-label="Close company details"
+          onClick={() => dialogRef.current.close()}
+        >
+          ×
+        </button>
+      </div>
+      <div className="company-contributions">
+        {experience
+          .filter((job) => job.company === company.name)
+          .map((job) => (
+            <article className="company-role" key={job.role}>
+              <div className="role-heading">
+                <h3>{job.role}</h3>
+                <p className="role-date">{job.date}</p>
+              </div>
+              <div className="job-content">
+                <p>{job.description}</p>
+                {job.details.length > 0 && (
+                  <ul className="job-details">
+                    {job.details.map((detail) => (
+                      <li key={detail}>{detail}</li>
+                    ))}
+                  </ul>
+                )}
+                <Tags items={job.tags} />
+              </div>
+            </article>
+          ))}
+      </div>
+    </dialog>
+  );
+}
 
 export default function App() {
+  const [activeCompany, setActiveCompany] = useState(null);
+  const [filter, setFilter] = useState("All work");
+  const visibleProjects = projects.filter(
+    (p) => filter === "All work" || p.type === filter,
+  );
   return (
     <>
-      <a className="skip-link" href="#main">Skip to content</a>
+      <Starfield />
+      <a className="skip-link" href="#main">
+        Skip to content
+      </a>
       <header className="site-header container">
-        <a className="wordmark" href="#" aria-label={`${profile.name}, home`}>{profile.initials}<span>.</span></a>
+        <a
+          className="wordmark"
+          href="#introduction"
+          aria-label="Richmond Choo home"
+        >
+          rc<span>✳</span>
+        </a>
         <nav aria-label="Main navigation">
-          <a href="#work">Work</a>
-          <a href="#about">About</a>
-          <a href="#contact">Contact <span aria-hidden="true">↗</span></a>
+          <a href="#experience">Experience</a>
+          <a href="#projects">Projects</a>
+          <a href="#education">Education</a>
         </nav>
+        <a className="header-contact" href={`mailto:${profile.email}`}>
+          Let’s talk <Arrow />
+        </a>
       </header>
-      <main id="main" className="container">
-        <section className="hero" aria-labelledby="intro-title">
-          <p className="eyebrow">{profile.name} / {profile.role}</p>
-          <h1 id="intro-title">{profile.headline}</h1>
-          <p className="intro">{profile.intro}</p>
-          <a className="button" href="#work">Explore my work <span aria-hidden="true">↘</span></a>
-        </section>
-        <section id="work" className="section" aria-labelledby="work-title">
-          <div className="section-heading">
-            <h2 id="work-title">Selected work</h2>
-            <span className="muted">A few things to explore</span>
+      {activeCompany && (
+        <CompanyModal
+          company={activeCompany}
+          onClose={() => setActiveCompany(null)}
+        />
+      )}
+      <main id="main">
+        <section
+          id="introduction"
+          className="hero container"
+          aria-labelledby="intro-title"
+        >
+          <div className="hero-top">
+            <p className="eyebrow">
+              <span className="status-dot" /> SOFTWARE ENGINEER · SINGAPORE
+            </p>
+            <span className="edition">A selection of work / 2022–2026</span>
           </div>
-          <div className="projects">
-            {projects.map((project, index) => (
-              <article className="project" key={project.title}>
-                <div className={`project-art art-${index % 3}`} aria-hidden="true">
-                  <span className="project-number">{String(index + 1).padStart(2, '0')}</span>
-                  <div className="art-shape" />
-                </div>
-                <p className="eyebrow project-category">{project.category}</p>
-                <h3>{project.url ? <a href={project.url}>{project.title} <span aria-hidden="true">↗</span></a> : project.title}</h3>
-                <p className="project-description">{project.description}</p>
-                <ul className="tags" aria-label="Technologies">
-                  {project.tags.map((tag) => <li key={tag}>{tag}</li>)}
-                </ul>
-              </article>
+          <div className="hero-grid">
+            <div className="hero-copy">
+              <h1 id="intro-title">
+                Engineering
+                <br />
+                with a little
+                <br />
+                <em>imagination.</em>
+                <span className="heading-star" aria-hidden="true">
+                  ✳
+                </span>
+              </h1>
+              <p className="hero-intro">
+                Hi, I’m Richmond Choo<span className="orange-text">.</span>
+              </p>
+              <p className="intro">
+                From reliable banking platforms to worlds built in C++. I turn
+                complex problems into software that works — and experiences
+                worth exploring.
+              </p>
+              <div className="hero-actions">
+                <a className="button" href="#projects">
+                  Explore my work <span aria-hidden="true">↘</span>
+                </a>
+                <a
+                  className="text-link"
+                  href={profile.linkedin}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  LinkedIn <Arrow />
+                </a>
+              </div>
+            </div>
+            <div className="hero-feature">
+              <div className="feature-note">
+                the creative side of engineering{" "}
+                <span aria-hidden="true">↘</span>
+              </div>
+              <VideoWindow project={projects[1]} featured />
+              <div className="feature-caption">
+                <span>01 — TROUBLESHOOTER</span>
+                <span>Built on our own 3D engine</span>
+              </div>
+              <div className="floating-note">
+                <span aria-hidden="true">⌘</span> Code. Create. Iterate.
+              </div>
+            </div>
+          </div>
+        </section>
+        <section
+          id="experience"
+          className="section container"
+          aria-labelledby="experience-title"
+        >
+          <SectionHeading
+            number="01"
+            label="WORKING EXPERIENCE"
+            title={<span id="experience-title">Built in the real world.</span>}
+          >
+            <p className="section-aside">
+              Reliable systems. Thoughtful tools.
+              <br />A little better, every iteration.
+            </p>
+          </SectionHeading>
+          <div className="company-logos" aria-label="Companies I’ve worked at">
+            {companies.map((company) => (
+              <button
+                type="button"
+                className="company-logo-button"
+                key={company.name}
+                aria-label={`View my contributions at ${company.name}`}
+                aria-haspopup="dialog"
+                onClick={() => setActiveCompany(company)}
+              >
+                <img src={company.logo} alt={company.name} />
+              </button>
             ))}
           </div>
         </section>
-        <section id="about" className="section about" aria-labelledby="about-title">
-          <h2 id="about-title">A little about me</h2>
-          <div>
-            <p className="about-copy">{profile.about}</p>
-            <ul className="tags skills" aria-label="Skills">
-              {profile.skills.map((skill) => <li key={skill}>{skill}</li>)}
-            </ul>
+        <section
+          id="projects"
+          className="projects-section"
+          aria-labelledby="projects-title"
+        >
+          <div className="container">
+            <SectionHeading
+              number="02"
+              label="PROJECTS & EXPERIMENTS"
+              title={
+                <span id="projects-title">
+                  Serious code.
+                  <br />
+                  <em>Playful possibilities.</em>
+                </span>
+              }
+            >
+              <p className="section-aside">
+                Custom engines, virtual worlds, useful apps.
+                <br />
+                Press play and take a look around.
+              </p>
+            </SectionHeading>
+            <div className="project-toolbar">
+              <div
+                className="filters"
+                role="group"
+                aria-label="Filter projects"
+              >
+                {["All work", "Games & engines", "Applications"].map((f) => (
+                  <button
+                    key={f}
+                    aria-pressed={filter === f}
+                    onClick={() => setFilter(f)}
+                  >
+                    {f}
+                  </button>
+                ))}
+              </div>
+              <span className="project-count" aria-live="polite">
+                {String(visibleProjects.length).padStart(2, "0")} projects
+              </span>
+            </div>
+            <div className="projects-grid">
+              {visibleProjects.map((project) => (
+                <article className="project" key={project.title}>
+                  {project.video ? (
+                    <VideoWindow project={project} />
+                  ) : (
+                    <div className={`no-video ${project.color}`}>
+                      <div className="campus-art" aria-hidden="true">
+                        <span>S</span>
+                        <div>
+                          <i />
+                          <i />
+                          <i />
+                        </div>
+                      </div>
+                      <span>CAMPUS, CONNECTED.</span>
+                    </div>
+                  )}
+                  <div className="project-meta">
+                    <span>{project.role}</span>
+                    <span>{project.year}</span>
+                  </div>
+                  <h3>
+                    {project.title}
+                    <span aria-hidden="true">↗</span>
+                  </h3>
+                  <p className="project-subtitle">{project.subtitle}</p>
+                  <p className="project-description">{project.description}</p>
+                  <Tags items={project.tags} />
+                </article>
+              ))}
+            </div>
           </div>
         </section>
-        <section id="contact" className="section contact" aria-labelledby="contact-title">
-          <p className="eyebrow">Have something in mind?</p>
-          <h2 id="contact-title">Let’s make it happen.</h2>
-          <a className="contact-link" href={`mailto:${profile.email}`}>{profile.email} <span aria-hidden="true">↗</span></a>
+        <section
+          id="education"
+          className="section education container"
+          aria-labelledby="education-title"
+        >
+          <SectionHeading
+            number="03"
+            label="EDUCATION"
+            title={<span id="education-title">Always a student.</span>}
+          >
+            <p className="section-aside">
+              A foundation in engineering.
+              <br />A curiosity that keeps going.
+            </p>
+          </SectionHeading>
+          <div className="education-grid">
+            <article>
+              <p className="eyebrow">2021 — 2025</p>
+              <h3>
+                Singapore Institute of Technology
+                <br />& DigiPen Institute of Technology
+              </h3>
+              <p className="degree">BSc (Hons) in Computer Science (RTIS)</p>
+              <span className="honors">↗ Honors with Distinction</span>
+              <ul>
+                <li>Joint degree with DigiPen Institute of Technology</li>
+                <li>
+                  Vice President of Academics: Computer Science, AY 2024–25
+                </li>
+                <li>Alumni Mentorship Program</li>
+              </ul>
+            </article>
+            <article>
+              <p className="eyebrow">2017 — 2019</p>
+              <h3>Ngee Ann Polytechnic</h3>
+              <p className="degree">Diploma in Biomedical Engineering</p>
+              <span className="honors">
+                ↗ Diploma Plus in Biomedical Engineering
+              </span>
+              <p className="education-note">
+                Where my engineering journey began — connecting technical
+                thinking with real-world problems.
+              </p>
+            </article>
+          </div>
         </section>
       </main>
-      <footer className="container site-footer">
-        <span>© {new Date().getFullYear()} {profile.name}</span>
-        <a href={profile.github}>GitHub <span aria-hidden="true">↗</span></a>
-        <a href="#">Back to top ↑</a>
+      <footer className="site-footer">
+        <div className="container">
+          <div className="footer-main">
+            <div>
+              <p className="eyebrow">HAVE SOMETHING IN MIND?</p>
+              <h2>
+                Let’s build something
+                <br />
+                <em>worth making.</em>
+              </h2>
+            </div>
+            <a
+              className="contact-round"
+              href={`mailto:${profile.email}`}
+              aria-label="Email Richmond Choo"
+            >
+              ↗
+            </a>
+          </div>
+          <a className="footer-email" href={`mailto:${profile.email}`}>
+            {profile.email}
+          </a>
+          <div className="footer-bottom">
+            <span>© {new Date().getFullYear()} Richmond Choo</span>
+            <div>
+              <a href={profile.github} target="_blank" rel="noreferrer">
+                GitHub <Arrow />
+              </a>
+              <a href={profile.linkedin} target="_blank" rel="noreferrer">
+                LinkedIn <Arrow />
+              </a>
+              <a href="#introduction">Back to top ↑</a>
+            </div>
+            <span>Made with curiosity.</span>
+          </div>
+        </div>
       </footer>
     </>
   );

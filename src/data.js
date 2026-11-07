@@ -1,36 +1,153 @@
-// Replace this sample content with your own details.
 export const profile = {
-  name: 'software engineer',
-  initials: 'RICHMOND CHOO',
-  role: 'Developer & creative thinker',
-  headline: 'Thoughtful ideas. Useful things.',
-  intro: 'I enjoy turning complex problems into simple, considered experiences. This is a small collection of what I’m building and learning.',
-  about: 'Use this space to introduce yourself: what you care about, how you work, and the kinds of problems you like to solve. A few personal details go a long way.',
-  email: 'hello@example.com',
-  github: 'https://github.com/Taterr',
-  skills: ['React', 'JavaScript', 'HTML & CSS', 'Git', 'Responsive design'],
+  name: "Richmond Choo",
+  email: "richmondch001@gmail.com",
+  github: "https://github.com/Taterr",
+  linkedin: "https://www.linkedin.com/in/richmond-choo-8001b8153/",
 };
+
+export const experience = [
+  {
+    company: "ST Engineering",
+    role: "Software Engineer",
+    date: "Sep 2026 — Present",
+    current: true,
+    description: "Building software and exploring what AI makes possible.",
+    details: [
+      "Collaborated on an AI building game for an internal Townhall challenge, placing 2nd among 21 teams.",
+    ],
+    tags: ["Software engineering", "AI"],
+  },
+  {
+    company: "DBS Bank",
+    role: "Management Associate, Technology",
+    date: "Jul 2025 — Sep 2026",
+    description:
+      "Turning infrastructure operations into reliable, automated workflows.",
+    details: [
+      "Selected as 1 of 19 from 40,000+ applicants for the Technology Management Associate Programme.",
+      "Led backend development of an F5 load balancing automation platform, improving operational efficiency by 30%.",
+      "Built a fullstack platform to track and automate OS upgrades across 20+ VPN devices.",
+    ],
+    tags: ["Python", "Django", "React", "REST"],
+  },
+  {
+    company: "DBS Bank",
+    role: "Site Reliability Engineer",
+    date: "May 2024 — Apr 2025",
+    description:
+      "Making enterprise recovery faster and systems more observable.",
+    details: [
+      "Developed a workflow script executor in MAGIC to streamline Murex service recovery, reducing repetitive script execution time by over 50%.",
+      "Implemented log monitoring with the ELK stack to support system stability and resilience.",
+    ],
+    tags: ["PHP", "Laravel", "ELK"],
+  },
+  {
+    company: "OCBC Bank",
+    role: "Loan Officer · Contract",
+    date: "Jun 2021 — Sep 2021",
+    description:
+      "Helped a small team process over 1,000 tuition fee loan applications in three months.",
+    details: [],
+    tags: ["Operations", "Teamwork"],
+  },
+];
 
 export const projects = [
   {
-    title: 'Project One',
-    category: 'Web application',
-    description: 'Describe the problem you solved, your contribution, and what makes this project worth exploring.',
-    tags: ['React', 'CSS'],
-    url: null, // Add a live demo or repository URL to enable the project link.
+    title: "VII Engine",
+    subtitle: "A world, built from the ground up.",
+    type: "Games & engines",
+    year: "2023–24",
+    role: "Programmer · Graphics Champion",
+    description:
+      "A custom 3D game engine with vertex animations, post-processing, and level editing capabilities. Built the tools behind the worlds.",
+    tags: ["C++", "Lua", "3D graphics"],
+    video: "J1BPHpjciLw",
+    color: "olive",
   },
   {
-    title: 'Project Two',
-    category: 'Side project',
-    description: 'Share an experiment, a tool you built for yourself, or an idea you brought to life.',
-    tags: ['JavaScript', 'API'],
-    url: null,
+    title: "TroubleShooter",
+    subtitle: "From engine to action.",
+    type: "Games & engines",
+    year: "2023–24",
+    role: "Script Programmer",
+    description:
+      "A 3D first-person shooter built on VII Engine. Brought gameplay to life through Lua scripting on our custom technology.",
+    tags: ["Lua", "First-person shooter", "VII Engine"],
+    video: "2ohjMP2u-Ks",
+    color: "orange",
   },
   {
-    title: 'Project Three',
-    category: 'Something different',
-    description: 'Show another side of your work. Explain what you learned and what you would build next.',
-    tags: ['Design', 'Development'],
-    url: null,
+    title: "ASpireEngine",
+    subtitle: "Tools for a team of makers.",
+    type: "Games & engines",
+    year: "2022–23",
+    role: "Programmer · Product Manager",
+    description:
+      "Led a team of eight across four majors to build a 2D game engine. Implemented the OpenGL graphics system and a level editor with ImGui and ImGuizmo.",
+    tags: ["C++", "OpenGL", "ImGui"],
+    video: "DV7cg4pO7JQ",
+    color: "purple",
+  },
+  {
+    title: "TouchDown",
+    subtitle: "Keep typing. Keep moving.",
+    type: "Games & engines",
+    year: "2022–23",
+    role: "Script Programmer",
+    description:
+      "A type-racer 2D side-scrolling game built on ASpireEngine, with gameplay scripting in C++.",
+    tags: ["C++", "2D game", "ASpireEngine"],
+    video: "pfv4RrADF6A",
+    color: "blue",
+  },
+  {
+    title: "OCUTELUS",
+    subtitle: "A different kind of school visit.",
+    type: "Applications",
+    year: "2023",
+    role: "Programmer",
+    description:
+      "An immersive Oculus Rift application set within a virtual school. Developed in Unity and documented users’ level of immersion.",
+    tags: ["Unity", "VR", "Oculus Rift"],
+    video: "jYnPWmNvC30",
+    start: 245,
+    color: "purple",
+  },
+  {
+    title: "BunnyJamJam",
+    subtitle: "Connected, frame by frame.",
+    type: "Games & engines",
+    year: "2022",
+    role: "Programmer · Computer Networks Champion",
+    description:
+      "A 2D multiplayer game using UDP for real-time cross-platform communication, tested for stability under simulated network latency.",
+    tags: ["UDP", "Multiplayer", "Networking"],
+    video: "20AC15ksBnE",
+    color: "olive",
+  },
+  {
+    title: "FoodKaki",
+    subtitle: "Good food. Smarter spending.",
+    type: "Applications",
+    year: "2024",
+    role: "HackSingapore · Ranked 31 / 200",
+    description:
+      "A meal-budgeting app comparing dining out with cooking at home. Combines restaurant options, Gemini-generated ingredient lists, and grocery prices.",
+    tags: ["Google Gemini", "Hackathon", "Budgeting"],
+    video: "Ibbxu9hjbrY",
+    color: "orange",
+  },
+  {
+    title: "SITZEN",
+    subtitle: "A more connected campus.",
+    type: "Applications",
+    year: "2023",
+    role: "CoDe Hackathon · Ranked 4 / 6",
+    description:
+      "A campus mobile app bringing e-module tracking, grading, feedback, room bookings, messaging, and discussion forums into one place.",
+    tags: ["Mobile app", "Campus", "Hackathon"],
+    color: "blue",
   },
 ];
