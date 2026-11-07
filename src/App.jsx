@@ -275,7 +275,7 @@ export default function App() {
               title={<span id="projects-title">Projects:</span>}
             >
               <p className="section-aside">
-                C / C++ / Python / Lua / React / Javascript
+                C / C++ / Python / React / Javascript
                 <br />
               </p>
             </SectionHeading>
@@ -318,7 +318,7 @@ export default function App() {
                     </div>
                   )}
                   <div className="project-meta">
-                    <p className="project-description">{project.description}</p>
+                    <p className="project-subtitle">{project.subtitle}</p>
                     <span className="project-year">{project.year}</span>
                   </div>
                   <h3>
@@ -326,7 +326,7 @@ export default function App() {
                     <span aria-hidden="true">↗</span>
                   </h3>
                   <p className="project-role">{project.role}</p>
-                  <p className="project-subtitle">{project.subtitle}</p>
+                    <p className="project-description">{project.description}</p>
                   <Tags items={project.tags} ranking={project.ranking} />
                 </article>
               ))}
