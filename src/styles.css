@@ -662,59 +662,24 @@ h2 {
 .site-footer {
   background: #0a1424b3;
   color: #f1f2e8;
-  padding: 58px 0 0;
+  padding: 0 0 30px;
 }
-.footer-main {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 30px;
-}
-.site-footer .eyebrow {
-  color: #b4bca6;
-  margin-bottom: 18px;
-}
-.site-footer h2 {
-  font-size: clamp(34px, 4.3vw, 60px);
-  letter-spacing: -2.7px;
-}
-.site-footer h2 em {
-  color: #bac79e;
-}
-.contact-round {
-  display: grid;
-  place-items: center;
-  width: 78px;
-  height: 78px;
-  background: #d6e0bc;
-  color: #293323;
-  font-size: 40px;
-  border-radius: 50%;
-}
-.contact-round:hover {
-  text-decoration: none;
-  background: #f1f2e8;
-}
-.footer-email {
-  display: inline-block;
-  font-size: 13px;
-  margin-top: 25px;
-  border-bottom: 1px solid #778367;
-  padding-bottom: 7px;
-}
+
 .footer-bottom {
   display: flex;
   justify-content: space-between;
   gap: 25px;
   align-items: center;
   border-top: 1px solid #526046;
-  margin-top: 55px;
+  margin-top: 0;
   padding: 24px 0;
   font-size: 10px;
   color: #c1c8b5;
 }
 .footer-bottom > div {
   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   gap: 25px;
 }
 .skip-link {
@@ -843,24 +808,12 @@ h2 {
   .education-grid h3 {
     font-size: 18px;
   }
-  .site-footer {
-    padding-top: 40px;
-  }
-  .site-footer h2 {
-    font-size: 36px;
-    letter-spacing: -1.7px;
-  }
-  .contact-round {
-    width: 55px;
-    height: 55px;
-    font-size: 28px;
-    flex-shrink: 0;
-  }
+
   .footer-bottom {
     flex-wrap: wrap;
     font-size: 9px;
     gap: 18px;
-    margin-top: 40px;
+    margin-top: 0;
   }
   .footer-bottom > div {
     gap: 17px;
@@ -869,12 +822,6 @@ h2 {
     width: 100%;
     font-size: 8px;
     color: #9ca88e;
-  }
-  .footer-email {
-    font-size: 12px;
-  }
-  .site-footer .eyebrow {
-    font-size: 9px;
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -915,25 +862,7 @@ h2 {
     inset 0 0 65px #02060f88,
     0 0 0 12px #03071055;
 }
-.starfield-control {
-  position: fixed;
-  right: 24px;
-  bottom: 20px;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 9px 12px;
-  background: #102034e8;
-  border: 1px solid #abc5db40;
-  border-radius: 30px;
-  color: #c6d6e7;
-  font-size: 10px;
-  backdrop-filter: blur(12px);
-}
-.starfield-control:hover {
-  background: #223c55;
-}
+
 .profile-intro,
 .section {
   text-shadow: 0 2px 16px #080e1a;
@@ -942,22 +871,14 @@ h2 {
 .company-modal {
   background: #111c2c;
 }
-.site-footer {
-  padding-bottom: 30px;
-}
+
 @media (max-width: 700px) {
   .viewport-frame {
     inset: 6px;
     border-radius: 16px;
   }
-  .starfield-control {
-    right: 14px;
-    bottom: 12px;
-    font-size: 9px;
-  }
 }
-@media (prefers-reduced-motion: reduce) {
-  .starfield-control {
-    display: none;
-  }
+
+.footer-contact {
+  overflow-wrap: anywhere;
 }

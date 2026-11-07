@@ -1,9 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 export default function Starfield() {
   const canvasRef = useRef(null);
   const starsRef = useRef([]);
-  const [paused, setPaused] = useState(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -43,7 +42,6 @@ export default function Starfield() {
       if (
         !desktopCursor.matches ||
         motion.matches ||
-        paused ||
         event.pointerType !== "mouse"
       )
         return;
@@ -101,7 +99,7 @@ export default function Starfield() {
     }
 
     function draw(time = 0) {
-      const moving = !paused && !motion.matches && !document.hidden;
+      const moving = !motion.matches && !document.hidden;
       const delta = lastTime ? Math.min((time - lastTime) / 1000, 0.05) : 0;
       lastTime = time;
       context.clearRect(0, 0, width, height);
@@ -189,23 +187,12 @@ export default function Starfield() {
       motion.removeEventListener("change", restart);
       desktopCursor.removeEventListener("change", restart);
     };
-  }, [paused]);
+  }, []);
 
   return (
-    <>
-      <div className="space-background" aria-hidden="true">
-        <canvas ref={canvasRef} />
-        <div className="viewport-frame" />
-      </div>
-      <button
-        type="button"
-        className="starfield-control"
-        aria-pressed={paused}
-        onClick={() => setPaused(!paused)}
-      >
-        <span aria-hidden="true">{paused ? "▷" : "Ⅱ"}</span>{" "}
-        {paused ? "Resume starfield" : "Pause starfield"}
-      </button>
-    </>
+    <div className="space-background" aria-hidden="true">
+      <canvas ref={canvasRef} />
+      <div className="viewport-frame" />
+    </div>
   );
 }

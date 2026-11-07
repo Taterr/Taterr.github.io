@@ -388,31 +388,14 @@ export default function App() {
       </main>
       <footer className="site-footer">
         <div className="container">
-          <div className="footer-main">
-            <div>
-              <p className="eyebrow">HAVE SOMETHING IN MIND?</p>
-              <h2>
-                Let’s build something
-                <br />
-                <em>worth making.</em>
-              </h2>
-            </div>
-            <a
-              className="contact-round"
-              href={`mailto:${profile.email}`}
-              aria-label="Email Richmond Choo"
-            >
-              ↗
-            </a>
-          </div>
-          <a className="footer-email" href={`mailto:${profile.email}`}>
-            {profile.email}
-          </a>
           <div className="footer-bottom">
             <span>© {new Date().getFullYear()} Richmond Choo</span>
             <div>
               <a href={profile.linkedin} target="_blank" rel="noreferrer">
                 LinkedIn <Arrow />
+              </a>
+              <a className="footer-contact" href={`mailto:${profile.email}`}>
+                {profile.email} <Arrow />
               </a>
               <a href="#introduction">Back to top ↑</a>
             </div>
