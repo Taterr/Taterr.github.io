@@ -357,12 +357,30 @@ export default function App() {
           <div className="education-grid">
             <article>
               <p className="eyebrow">2021 — 2025</p>
-              <h3>
-                Singapore Institute of Technology
-                <br />& DigiPen Institute of Technology
+              <h3
+                className="school-logos"
+                aria-label="Singapore Institute of Technology and DigiPen Institute of Technology"
+              >
+                <span className="school-logo school-logo-sit">
+                  <img
+                    src="/logos/sit.png"
+                    alt="Singapore Institute of Technology"
+                    loading="lazy"
+                  />
+                </span>
+                <span className="school-logo-divider" aria-hidden="true">
+                  ×
+                </span>
+                <span className="school-logo">
+                  <img
+                    src="/logos/digipen.svg"
+                    alt="DigiPen Institute of Technology"
+                    loading="lazy"
+                  />
+                </span>
               </h3>
               <p className="degree">BSc (Hons) in Computer Science (RTIS)</p>
-              <span className="honors">↗ Honors with Distinction</span>
+              <span className="honors">Honors with Distinction</span>
               <ul>
                 <li>Joint degree with DigiPen Institute of Technology</li>
                 <li>
@@ -373,10 +391,18 @@ export default function App() {
             </article>
             <article>
               <p className="eyebrow">2017 — 2019</p>
-              <h3>Ngee Ann Polytechnic</h3>
+              <h3 className="school-logos" aria-label="Ngee Ann Polytechnic">
+                <span className="school-logo school-logo-np">
+                  <img
+                    src="/logos/ngee-ann.png"
+                    alt="Ngee Ann Polytechnic"
+                    loading="lazy"
+                  />
+                </span>
+              </h3>
               <p className="degree">Diploma in Biomedical Engineering</p>
               <span className="honors">
-                ↗ Diploma Plus in Biomedical Engineering
+                Diploma Plus in Biomedical Engineering
               </span>
               <p className="education-note">
                 Where my engineering journey began — connecting technical
@@ -399,7 +425,7 @@ export default function App() {
               </a>
               <a href="#introduction">Back to top ↑</a>
             </div>
-            <span>Made with curiosity.</span>
+            <span>Singapore</span>
           </div>
         </div>
       </footer>
