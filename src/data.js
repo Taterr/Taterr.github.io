@@ -5,13 +5,31 @@ export const profile = {
   linkedin: "https://www.linkedin.com/in/richmond-choo-8001b8153/",
 };
 
+export const hobbies = [
+  {
+    title: "YouTube music",
+    date: "2026 - Present",
+    description: "The goal is to create ambient relaxing instrumental music that people can listen to on a warm Sunday afternoon",
+  },
+  {
+    title: "Choir - Church of the Holy Spirit",
+    date: "2025 - Present",
+    description: "I'd like to think that I can sing",
+  },
+  {
+    title: "Ecommerce",
+    date: "2021 - 2024",
+    description: "Ran an ecommerce shop across 3 platforms, at 50% profit margin. Internationally sourced, locally shipped",
+  },
+];
+
 export const experience = [
   {
     company: "ST Engineering",
     role: "Software Engineer",
     date: "Sep 2026 — Present",
     current: true,
-    description: "Cryptography",
+    description: "Cyber Division, Cryptography",
     details: ["Frontend developer for new AWS Licensing web portal initiative"],
     tags: ["C++", "React"],
   },

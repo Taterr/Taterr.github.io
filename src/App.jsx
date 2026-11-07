@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import Starfield from "./Starfield.jsx";
-import { profile, experience, projects } from "./data.js";
+import { profile, experience, projects, hobbies } from "./data.js";
 
 const companies = [
   { name: "ST Engineering", logo: "/logos/st-engineering.png" },
@@ -245,7 +245,8 @@ export default function App() {
           >
             <p className="section-aside">
               Banking & Finance,
-              <br />Defence.
+              <br />
+              Defence.
             </p>
           </SectionHeading>
           <div className="company-logos" aria-label="Companies I’ve worked at">
@@ -326,7 +327,7 @@ export default function App() {
                     <span aria-hidden="true">↗</span>
                   </h3>
                   <p className="project-role">{project.role}</p>
-                    <p className="project-description">{project.description}</p>
+                  <p className="project-description">{project.description}</p>
                   <Tags items={project.tags} ranking={project.ranking} />
                 </article>
               ))}
@@ -399,11 +400,32 @@ export default function App() {
               <span className="honors">
                 Diploma Plus in Biomedical Engineering
               </span>
-              <p className="education-note">
-                Where my engineering journey began — connecting technical
-                thinking with real-world problems.
-              </p>
+              <ul>
+                <li>NUS Entrepreneurship Symposium</li>
+                <li>Water Polo Club</li>
+                <li>Rotaract Club</li>
+              </ul>
             </article>
+          </div>
+        </section>
+        <section
+          id="hobbies"
+          className="section hobbies container"
+          aria-labelledby="hobbies-title"
+        >
+          <SectionHeading
+            number="04"
+            label="OUTSIDE OF WORK"
+            title={<span id="hobbies-title">Hobbies</span>}
+          />
+          <div className="hobbies-grid">
+            {hobbies.map((hobby) => (
+              <article key={hobby.title}>
+                <p className="eyebrow">{hobby.date}</p>
+                <h3>{hobby.title}</h3>
+                <p className="hobby-description">{hobby.description}</p>
+              </article>
+            ))}
           </div>
         </section>
       </main>

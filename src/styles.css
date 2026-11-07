@@ -712,6 +712,43 @@ h2 {
     padding: 14px 18px;
   }
 }
+.hobbies {
+  border-top: 1px solid var(--line);
+}
+.hobbies-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+}
+.hobbies-grid article {
+  min-width: 0;
+  border-top: 1px solid var(--line);
+  padding-top: 23px;
+}
+.hobbies-grid .eyebrow {
+  color: var(--muted);
+}
+.hobbies-grid h3 {
+  margin-top: 14px;
+  font-size: 20px;
+  font-weight: 550;
+  letter-spacing: -0.5px;
+}
+.hobby-description {
+  margin-top: 12px;
+  font-size: 12px;
+  line-height: 1.9;
+  color: var(--muted);
+}
+@media (max-width: 700px) {
+  .hobbies-grid {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+  .hobbies-grid h3 {
+    font-size: 18px;
+  }
+}
 .degree {
   font-size: 13px;
   margin-top: 15px;
