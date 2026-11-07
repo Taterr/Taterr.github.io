@@ -162,6 +162,42 @@ function CompanyModal({ company, onClose }) {
   );
 }
 
+function ScrollCue() {
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    if (window.scrollY > 0) {
+      setVisible(false);
+      return;
+    }
+    const dismiss = () => {
+      setVisible(false);
+      window.removeEventListener("scroll", dismiss);
+      window.clearTimeout(timer);
+    };
+    const timer = window.setTimeout(dismiss, 5000);
+    window.addEventListener("scroll", dismiss, { passive: true });
+    return () => {
+      window.clearTimeout(timer);
+      window.removeEventListener("scroll", dismiss);
+    };
+  }, []);
+
+  return (
+    <a
+      className={`scroll-cue${visible ? "" : " is-dismissed"}`}
+      href="#experience"
+      aria-hidden={!visible}
+      tabIndex={visible ? 0 : -1}
+    >
+      <span>Scroll to explore</span>
+      <span className="scroll-cue-arrow" aria-hidden="true">
+        ↓
+      </span>
+    </a>
+  );
+}
+
 export default function App() {
   const [activeCompany, setActiveCompany] = useState(null);
   const [filter, setFilter] = useState("All work");
@@ -174,23 +210,7 @@ export default function App() {
       <a className="skip-link" href="#main">
         Skip to content
       </a>
-      <header className="site-header container">
-        <a
-          className="wordmark"
-          href="#introduction"
-          aria-label="Richmond Choo home"
-        >
-          rc<span>✳</span>
-        </a>
-        <nav aria-label="Main navigation">
-          <a href="#experience">Experience</a>
-          <a href="#projects">Projects</a>
-          <a href="#education">Education</a>
-        </nav>
-        <a className="header-contact" href={`mailto:${profile.email}`}>
-          Let’s talk <Arrow />
-        </a>
-      </header>
+
       {activeCompany && (
         <CompanyModal
           company={activeCompany}
@@ -210,14 +230,7 @@ export default function App() {
           <p className="intro-role">
             Software engineer <span aria-hidden="true">·</span> Singapore
           </p>
-          <div className="intro-links">
-            <a href={profile.github} target="_blank" rel="noreferrer">
-              GitHub <Arrow />
-            </a>
-            <a href={profile.linkedin} target="_blank" rel="noreferrer">
-              LinkedIn <Arrow />
-            </a>
-          </div>
+          <ScrollCue />
         </section>
         <section
           id="experience"
@@ -398,9 +411,6 @@ export default function App() {
           <div className="footer-bottom">
             <span>© {new Date().getFullYear()} Richmond Choo</span>
             <div>
-              <a href={profile.github} target="_blank" rel="noreferrer">
-                GitHub <Arrow />
-              </a>
               <a href={profile.linkedin} target="_blank" rel="noreferrer">
                 LinkedIn <Arrow />
               </a>

@@ -61,38 +61,7 @@ h4 {
   width: min(1240px, calc(100% - 112px));
   margin-inline: auto;
 }
-.site-header {
-  height: 106px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid var(--line);
-}
-.wordmark {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 38px;
-  font-weight: 750;
-  letter-spacing: -3px;
-}
-.wordmark span {
-  font-size: 31px;
-  color: var(--orange);
-  letter-spacing: 0;
-}
-.site-header nav {
-  display: flex;
-  gap: 34px;
-  font-size: 13px;
-}
-.header-contact {
-  font-size: 13px;
-  border-bottom: 1px solid var(--ink);
-  padding-bottom: 6px;
-  display: flex;
-  gap: 30px;
-}
+
 .eyebrow {
   font-size: 10px;
   letter-spacing: 1.5px;
@@ -105,9 +74,46 @@ h4 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 405px;
+  position: relative;
+  min-height: 100svh;
   padding-block: 80px;
   text-align: center;
+}
+.scroll-cue {
+  position: absolute;
+  left: 50%;
+  bottom: 38px;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  opacity: 1;
+  transition:
+    opacity 0.35s ease,
+    visibility 0.35s;
+}
+.scroll-cue:hover {
+  color: var(--ink);
+  text-decoration: none;
+}
+.scroll-cue-arrow {
+  color: var(--orange);
+  font-size: 18px;
+}
+.scroll-cue.is-dismissed {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+@media (max-width: 700px) {
+  .scroll-cue {
+    bottom: 76px;
+  }
 }
 .intro-greeting {
   font-size: 14px;
@@ -132,31 +138,14 @@ h4 {
   margin-inline: 9px;
   color: var(--orange);
 }
-.intro-links {
-  display: flex;
-  gap: 28px;
-  margin-top: 27px;
-}
-.intro-links a {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 12px;
-}
-.intro-links a span {
-  color: var(--orange);
-}
+
 @media (max-width: 700px) {
   .profile-intro {
-    min-height: 310px;
     padding-block: 60px;
   }
   .intro-greeting,
   .intro-role {
     font-size: 12px;
-  }
-  .intro-links {
-    margin-top: 24px;
   }
 }
 .status-dot {
@@ -754,22 +743,6 @@ h2 {
   .container {
     width: calc(100% - 40px);
   }
-  .site-header {
-    height: 83px;
-  }
-  .wordmark {
-    font-size: 32px;
-  }
-  .wordmark span {
-    font-size: 25px;
-  }
-  .site-header nav {
-    gap: 16px;
-    font-size: 11px;
-  }
-  .header-contact {
-    display: none;
-  }
 
   .section {
     padding-block: 55px;
@@ -966,9 +939,6 @@ h2 {
   text-shadow: 0 2px 16px #080e1a;
 }
 
-.site-header {
-  border-bottom-color: #b1c7e329;
-}
 .company-modal {
   background: #111c2c;
 }
